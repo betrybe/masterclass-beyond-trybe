@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  development:
+    image: betrybe/beyond-trybe-masterclass:v3
+    restart: on-failure
+    ports:
+      - 8001:5000
+    environment:
+      - ENVIRONMENT=development
+  homologation:
+    image: betrybe/beyond-trybe-masterclass:v2
+    restart: on-failure
+    ports:
+      - 8002:5000
+    environment:
+      - ENVIRONMENT=homologation
+  staging:
+    image: betrybe/beyond-trybe-masterclass:v1
+    restart: on-failure
+    ports:
+      - 8003:5000
+    environment:
+      - ENVIRONMENT=staging
+  production:
+    image: betrybe/beyond-trybe-masterclass:v1
+    restart: on-failure
+    ports:
+      - 8004:5000
+    environment:
+      - ENVIRONMENT=production

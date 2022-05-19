@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Beyond Trybe!</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      background-color: {{ color }};
+    }
+    #container {
+      display: flex;
+      flex-direction: column;
+    }
+    img {
+      max-height: 500px;
+      max-width: 500px;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <h1>Olá Beyonders!</h1>
+      <p>Este site está atualmente na versão: <strong>{{ version }} ({{ color }})</strong></p>
+      <br/>
+      {% if environment == "development" %}
+      <p>Como estou no ambiente <strong>development</strong>, posso fazer diversos testes sem me preocupar!</p>
+      {% elif environment == "homologation" %}
+      <p>Como estou no ambiente <strong>homologation</strong>, o time de QA deve estar homologando as alterações para ir para produção!</p>
+      {% elif environment == "staging" %}
+      <p>Como estou no ambiente <strong>staging</strong>, vou apenas para validar uma correção de bug que vai direto para produção!</p>
+      {% elif environment == "production" %}
+      <p>Como estou no ambiente <strong>production</strong>, preciso ser muito cuidadoso!</p>
+      {% endif %}
+      <img id="dog" src="" alt="Carregando...">
+    </div>
+  </body>
+  <script>
+    fetch("https://dog.ceo/api/breeds/image/random")
+    .then((resp) => resp.json())
+    .then((data) => {
+      document.getElementById('dog').src = data.message
+    })
+  </script>
+</html>
